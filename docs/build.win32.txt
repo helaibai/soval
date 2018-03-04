@@ -1,0 +1,314 @@
+****************************************************
+
+               OVAL Interpreter
+
+          Build Instructions - Windows
+
+  Copyright (c) 2002-2014, The MITRE Corporation
+
+****************************************************
+
+The MITRE Corporation developed the OVAL Interpreter to 
+demonstrate the usability of the OVAL Language. The source for
+the OVAL Interpreter is freely available for reference use. This
+document describes the steps you need to build the OVAL 
+Interpreter.
+
+For information about using the OVAL Interpreter refer to the README.txt
+file included with the OVAL Interpreter, or the OVAL Web site.
+
+      OVAL Interpreter:
+      http://oval.mitre.org/language/download/interpreter/index.html
+
+BY USING THE OVAL INTERPRETER, YOU SIGNIFY YOUR ACCEPTANCE OF THE
+TERMS AND CONDITIONS OF USE.  IF YOU DO NOT AGREE TO THESE TERMS,
+DO NOT USE THE OVAL INTERPRETER.  SEE THE TERMS.TXT FILE INCLUDED
+WITH THE OVAL INTERPRETER.
+
+
+-- CONTENTS --
+
+  I    OVERVIEW
+        A. Source Distribution
+        B. Source Distribution Contents
+        C. Supporting Libraries
+  II   BUILD INSTRUCTIONS
+        A. PCRE Library
+        B. Xerces Library
+        C. Xalan Library
+        D. Libgcrypt Library
+        E. Building the OVAL Interpreter
+  III  PCRE
+  IV   XERCES
+  V    XALAN
+  VI   LIBGCRYPT
+  VII  REPORTING PROBLEMS
+  VIII USEFUL LINKS
+
+-- I -- OVERVIEW --
+
+Download the appropriate installation files from the OVAL Interpreter SourceForge site.
+
+  A. Source Distributions
+
+       The source for the OVAL Interpreter is freely available on the OVAL
+       Interpreter SourceForge site.  There is currently a .zip file for
+	   Windows users that contains all of the source code as well as a Visual
+	   C++ project for the OVAL Interpreter.  To download the source go to:
+
+            http://sourceforge.net/projects/ovaldi/files/
+		
+	   The latest source for the OVAL Interpreter is also freely available on
+	   the OVAL Interpreter SourceForge site and can be accessed via SVN.
+	   Please see the following link for more information:
+	   
+	       http://sourceforge.net/scm/?type=svn&group_id=215469
+		
+  B. Source Distribution Contents
+
+       The source code distribution contains the source for
+       the OVAL Interpreter and a Visual C++ project. The source 
+       distribution does not include the source for the libraries
+       needed to compile the OVAL Interpreter. 
+
+  C. Supporting Libraries
+
+       The OVAL Interpreter relies on four C/C++ libraries that can be found
+       on the Web. See sections III - VI for more information about the
+       specific libraries used and where to download their source from.
+
+
+-- II -- BUILD INSTRUCTIONS --
+
+The following instructions describe how to build the OVAL Interpreter 
+on a Windows system.  The OVAL Interpreter has been built and tested on 
+the 32-bit version of Windows XP Pro using VC10 and the Windows 7 SDK. The 
+source distribution includes a project file that can be used to build 
+the OVAL Interpreter. Before the OVAL Interpreter can be built, the 
+supporting libraries must be installed. Follow the instruction below 
+to setup and install the supporting libraries.
+
+  A. PCRE (Perl-compatible regular-expression) Library
+ 
+       The simplest way to setup the PCRE library on a Windows system is to
+       download the "Complete package, except sources" (note: download 'Setup'
+       not 'Zip') from:
+       
+          http://gnuwin32.sourceforge.net/packages/pcre.htm
+
+       The download should be an executable that will install the binaries,
+       developer files, and documentation on your machine.  Run this setup
+       program and follow the instructions provided. 
+
+       After the installation is complete, you must add the PCRE lib and
+       include directories to Visual C++. Add the following directory to 
+       the include files search path:
+       
+          <installed path>\include
+       
+       Then add the following directory to the library files search path:
+
+          <installed path>\lib
+
+       In Visual C++ 7 the UI for setting up directories can be found by clicking the
+       "Tools" menu then selecting "Options...", next selecting the "Project" folder,
+       and then choosing the "VC++ Directories" item.     
+
+
+  B. Xerces Library
+
+       Download and install a binary distribution of the xerces-c library.
+       The OVAL Interpreter currently uses version 3.1.1 of the xerces-c
+       library. The binary distribution file can be found at:
+
+          http://www.apache.org/dist/xerces/c/3/binaries/
+
+  C. Xalan Library
+      
+       The OVAL Interpreter uses the open source Xalan library.  The
+       binary was compiled with version 1.11.0 of the xalan-c library.  From
+       the Xalan Web site:
+
+         "This product includes software developed by the Apache Software
+	     Foundation (http://www.apache.org/)."
+
+       For more information about Xalan visit:
+
+         http://xalan.apache.org
+
+       Source is available from:
+
+         http://www.apache.org/dist/xalan/xalan-c/
+
+       Before compiling, you may optionally apply xalan_optional_patch.txt, 
+       which resolves two issues.  One of them can cause a crash under certain
+       circumstances on any platform, the other seems to always cause crashes in
+       Windows debug builds specifically.  Windows release builds don't seem to
+       be affected by the latter issue.  If you don't wish to apply the patch,
+       you can skip building from source and use a pre-built binary available
+       from the same place as the source.
+
+       The Xalan binary distribution site given above also has "combined" zips
+       which contain both Xerces and Xalan.  They are named "xalan_comb-*".  So
+       you could download that if you wanted to get both libraries in one fell
+       swoop, and if you didn't want to apply any patches and build from source.
+
+       Building Xalan from source:
+
+       These instructions assume you're using VC++10 (VC++ 2010) to build 32-bit
+       binaries.  Before starting Visual Studio, set an environment variable 
+       named XERCESCROOT which points to where xerces 3.1.1 is installed.  Also,
+       add %XERCESCROOT%\bin to your PATH:
+
+       Control Panel -> System -> Advanced system settings -> Advanced (tab) ->
+         Environment Variables (button).
+
+       Next, navigate to <xalan source dir>\c\Projects\Win32\VC10 and open
+       "Xalan.sln" in Visual Studio.  The simplest thing to do from here is
+       perform a batch build of what you need:
+
+       Right click the solution -> Batch Build...
+
+       Check checkboxes for what you want to build.  E.g. if you want to build
+       32-bit debug and release builds of everything, check checkboxes for
+       project "All", config "Debug|Win32" and "Release|Win32".  If you just
+       want the DLLs, choose project "AllInOne".  Then click "Build".
+
+       When the build is done, your DLLs will be in
+       <xalan source dir>\c\Build\Win32\VC10\(Debug|Release).
+
+       This doesn't create a standard directory layout with bin/lib/include
+       directories, so you'll either have to create that yourself, or just use
+       the files where they are in your Xalan source tree.  Either way, don't
+       forget to include the generated headers in:
+
+       <xalan source dir>\c\Build\Win32\VC10\(Debug|Release)\Nls\Include
+
+  D. Libgcrypt Library
+
+       You can get source from http://www.gnupg.org/download/#libgcrypt and build it yourself,
+       or you can get a binary installer from ftp://ftp.gnupg.org/gcrypt/binary/gpg-w32-dev-20100713.zip.
+	   The instructions below assume you used the binary installer.
+
+       Add the following directory to the include files search path:
+       
+          <installed path>\include
+
+       Add the following directory to the library files search path:
+
+          <installed path>\lib
+
+       In Visual C++ 7 the UI for setting up directories can be found by clicking the
+       "Tools" menu then selecting "Options..." next selecting the "Project" folder
+       and then choosing the "VC++ Directories" item. 
+	   
+  E. Building the OVAL Interpreter
+
+      After setting up the PCRE, Xerces, and Xalan libraries open the provided project
+      for the OVAL Interpreter. The project is in:
+
+         Visual C++ 10:
+         <path to ovaldi directory>\project\Win32\VC10\OVALInterpreter.vcxproj
+
+      From the build menu simply select "build" to build the OVAL Interpreter.
+      Note that a "Debug" and a "Release" build configuration is provided.
+ 
+-- III -- PCRE --
+
+The OVAL Interpreter uses the open source PCRE library.  The OVAL Interpreter
+currently uses version 8.x of the PCRE library.  From the PCRE Web site:
+
+  "Regular expression support is provided by the PCRE library 
+   package, which is open source software, written by Philip Hazel,
+   and copyright by the University of Cambridge, England."
+
+The PCRE library is under the BSD License and is re-distributed in
+ovaldi-x.x.x-setup.exe. As a result, a copy of the license
+(LICENCE.pcre) has been provided.    
+   
+For more information about PCRE visit:
+
+    http://www.pcre.org
+
+To download the source code for PCRE, please use the following FTP
+site:
+
+    ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/
+
+
+-- IV -- XERCES --
+
+The OVAL Interpreter uses the open source Xerces library.  The
+binary was compiled with version 3.1.1 of the xerces-c library.  From
+the Xerces Web site:
+
+  "This product includes software developed by the Apache Software
+  Foundation (http://www.apache.org/)."
+
+The Xerces library is under the Apache 2.0 License and is re-distributed
+in ovaldi-x.x.x-setup.exe and ovaldi-libs-x.x.x-1.i386.rpm. As a result, 
+a copy of the license (LICENCE.xerces_xalan) has been provided.    
+  
+For more information about Xerces visit:
+
+    http://xerces.apache.org
+
+The source code is also available at the above Web site.
+
+-- V -- XALAN --
+
+The OVAL Interpreter uses the open source Xalan library.  The
+binary was compiled with version 1.11.0 of the xalan-c library.  From
+the Xalan Web site:
+
+  "This product includes software developed by the Apache Software
+  Foundation (http://www.apache.org/)."
+
+The Xalan library is under the Apache 2.0 License and is re-distributed
+in ovaldi-x.x.x-setup.exe and ovaldi-libs-x.x.x-1.i386.rpm. As a result,
+a copy of the license (LICENCE.xerces_xalan) has been provided.  
+  
+For more information about Xalan visit:
+
+    http://xalan.apache.org
+
+The source code is also available at the above Web site.
+
+-- VI -- LIBGCRYPT --
+
+The OVAL Interpreter uses the open-source Libgcrypt library.  The binary
+was compiled with version 1.4.6 of the Libgcrypt library.  From the
+Libgcrypt Web site:
+
+	"Libgcrypt is a general purpose cryptographic library based on the
+	code from GnuPG. It provides functions for all cryptographic building
+	blocks: symmetric ciphers, hash algorithms, MACs, public key
+	algorithms, large integer functions, random numbers and a lot of
+	supporting functions."
+  
+For more information about Libgcrypt visit:
+    http://www.gnupg.org/related_software/libraries.en.html#lib-libgcrypt
+
+The source code is also available at the above Web site.
+
+-- VII -- REPORTING PROBLEMS --
+
+To report a problem with OVAL Interpreter, please add a bug tracker item,
+or create a post on the OVAL Interpreter Help Project Forum, with a brief
+description of the problem on the OVAL Interpreter SourceForge site
+(http://sourceforge.net/projects/ovaldi/support). Please include the
+platform the OVAL Interpreter was run on, the version of the OVAL
+Interpreter, and the OVAL Definitions document that was used.
+
+-- VIII -- USEFUL LINKS -- 
+
+OVAL Web site -- http://oval.mitre.org
+
+OVAL Interpreter Source Code -- http://sourceforge.net/projects/ovaldi/files/
+
+OVAL Interpreter Wiki -- http://sourceforge.net/apps/mediawiki/ovaldi/index.php?title=Main_Page
+
+----------------------------------------------------------
+OVAL is sponsored by US-CERT at the U.S. Department of Homeland
+Security. OVAL and the OVAL logo are trademarks of The MITRE
+Corporation. Copyright 2002-2014, The MITRE Corporation (www.mitre.org).
