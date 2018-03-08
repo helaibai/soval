@@ -1,0 +1,15 @@
+1. 开放漏洞与评估语言（OVAL）的基本架构 
+http://wiki.scap.org.cn/oval/architecture
+2. 台湾
+http://www.iii.org.tw/infor/2012/ctti/crystal/cht/csk.html
+3. 一个可以维护的库
+http://ovaldbru.altx-soft.ru/
+4. redhat 官方的oval
+https://www.redhat.com/security/data/oval/
+5. security database
+http://www.security-database.com/oval.php?version=5.3
+6. oval上使用oval做产品 
+http://oval.mitre.org/adoption/productlist.html
+7. scap 整体介绍
+http://wiki.scap.org.cn/scap/overview
+8. 
