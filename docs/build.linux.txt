@@ -349,3 +349,12 @@ Security. OVAL and the OVAL logo are trademarks of The MITRE
 Corporation. Copyright 2002-2014, The MITRE Corporation (www.mitre.org).
 
 
+///////////////////////////////////////////////////////////////////
+/////////////////       SHENJUNWEI ////////////////////////////////
+1. Ubuntu 16.04.2 LTS
+ a. sudo apt-get install libpcre3 libpcre3-dev
+ b. http://mirrors.shu.edu.cn/apache//xerces/c/3/sources/xerces-c-3.2.1.tar.gz
+
+ c. http://mirrors.hust.edu.cn/apache/xalan/xalan-c/sources/xalan_c-1.11-src.tar.gz
+    
+apt-get install libapt-pkg-dev
