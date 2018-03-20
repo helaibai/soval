@@ -75,5 +75,6 @@ typedef std::pair < std::string, std::string > StringPair;
 typedef std::vector < StringPair* > StringPairVector;
 
 
+typedef int int_32;
 #endif
 

@@ -38,6 +38,7 @@
 
 #include <unistd.h>
 
+#include <stdlib.h>
 #include <netdb.h>
 #include <arpa/inet.h>
 

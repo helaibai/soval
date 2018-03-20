@@ -127,7 +127,7 @@ public:
 
 	RpmfiGuard(rpmts ts, Header hdr, rpmTag tag, 
 			   const std::string &rpmName /* for error messages */) {
-		fileInfo = rpmfiNew(ts, hdr, tag, 0);
+		fileInfo = rpmfiNew(ts, hdr, tag, RPMFI_NOHEADER);
 			
 		if (!fileInfo)
 			throw IOException("Couldn't init file iterator on RPM "+rpmName);
