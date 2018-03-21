@@ -31,6 +31,7 @@
 #ifndef VECTORPTRGUARD_H
 #define VECTORPTRGUARD_H
 
+#include <stdio.h>
 #include <vector>
 
 #include <Noncopyable.h>

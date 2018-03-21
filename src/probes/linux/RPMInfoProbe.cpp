@@ -39,6 +39,7 @@
 #include <VectorPtrGuard.h>
 #include <Log.h>
 
+#include "RPMFunctionCompat.h"
 #include "RPMInfoProbe.h"
 
 using namespace std;

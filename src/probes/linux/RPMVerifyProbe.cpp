@@ -56,6 +56,7 @@ rpmlib = misc stuff...?
 #include <Log.h>
 #include <linux/RpmGuards.h>
 
+#include "RPMFunctionCompat.h"
 #include "RPMVerifyProbe.h"
 
 using namespace std;

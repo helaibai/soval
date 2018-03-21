@@ -93,11 +93,11 @@ ItemVector* DPKGInfoProbe::CollectItems(Object* object) {
 			} else {
 
 				VariableValueVector::iterator iterator;
-				for(iterator = name->GetVarRef()->GetValues()->begin(); iterator != name->GetVarRef()->GetValues()->end(); iterator++) {
+				for(iterator = name->GetVarRef()->GetValues().begin(); iterator != name->GetVarRef()->GetValues().end(); iterator++) {
 
 					Item* item = this->CreateItem();
 					item->SetStatus(OvalEnum::STATUS_DOES_NOT_EXIST);
-					item->AppendElement(new ItemEntity("name",  (*iterator)->GetValue(), OvalEnum::DATATYPE_STRING, OvalEnum::STATUS_DOES_NOT_EXIST));
+					item->AppendElement(new ItemEntity("name",  (*iterator).GetValue(), OvalEnum::DATATYPE_STRING, OvalEnum::STATUS_DOES_NOT_EXIST));
 					collectedItems->push_back(item);
 				}
 			}
@@ -172,10 +172,10 @@ StringVector* DPKGInfoProbe::GetDPKGNames(ObjectEntity* name) {
 			// variable values and add them to the set of all names
 			// if they exist on the system
 			VariableValueVector::iterator iterator;
-			for(iterator = name->GetVarRef()->GetValues()->begin(); iterator != name->GetVarRef()->GetValues()->end(); iterator++) {
+			for(iterator = name->GetVarRef()->GetValues().begin(); iterator != name->GetVarRef()->GetValues().end(); iterator++) {
 				
-				if(this->DPKGExists((*iterator)->GetValue())) {
-					allNames.push_back((*iterator)->GetValue());
+				if(this->DPKGExists((*iterator).GetValue())) {
+					allNames.push_back((*iterator).GetValue());
 				}
 			}
 

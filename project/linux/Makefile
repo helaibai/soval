@@ -61,7 +61,8 @@ CPP_FILES := $(foreach d,$(SRC_DIRS),$(wildcard $(d)/*.cpp))
 
 # Selectively enable/disable packages rather than assume presence is mutually exclusive.
 ifneq (${PACKAGE_RPM}, )
-	LIBS += -lrpm -lrpmdb -lrpmio -lpopt
+	#LIBS += -lrpm -lrpmdb -lrpmio -lpopt
+	LIBS += -lrpm -lrpmio -lpopt
 	CPPFLAGS += -DPACKAGE_RPM
 else
 	CPP_FILES := $(filter-out %RPMInfoProbe.cpp, $(CPP_FILES))

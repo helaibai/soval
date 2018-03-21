@@ -47,6 +47,7 @@ rpmlib = misc stuff...?
 
 #include <sys/stat.h>
 #include "RPMVerifyPackageProbe.h"
+#include "RPMFunctionCompat.h"
 #include <OvalMessage.h>
 #include <OvalEnum.h>
 #include <Behavior.h>
