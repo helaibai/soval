@@ -14,3 +14,5 @@ http://oval.mitre.org/adoption/productlist.html
 http://wiki.scap.org.cn/scap/overview
 8. 
 https://oval.cisecurity.org/repository/download
+9. how to add define
+http://ovalproject.github.io/getting-started/tutorial/
