@@ -1,3 +1,11 @@
 其他家的相关产品
 http://oval.mitre.org/adoption/productlist.html
 
+
+
+
+
+注意:
+1. 介绍关于xml的命名空间
+http://www.w3school.com.cn/xml/xml_namespaces.asp
+
