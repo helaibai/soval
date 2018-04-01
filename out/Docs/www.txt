@@ -18,3 +18,5 @@ https://oval.cisecurity.org/repository/download
 http://ovalproject.github.io/getting-started/tutorial/
 10.The Open Vulnerability and Assessment Language (OVAL) Developer’s Guide
 http://ovalproject.github.io/getting-started/best-practices/
+11. 制作OVAL的软件
+https://www.g2-inc.com/escape-content-editor
